@@ -4,7 +4,7 @@
 	"description": "A simple WoT-connected Raspberry PI for the WoT Book",
 	"port": 8484,
 	"sensors": {
-		"temperature" {
+		"temperature" : {
 			"name":"Temperature Sensor",
 			"description": "An ambient temperature sensor.",
 			"unit": "celsius",
