@@ -3,7 +3,7 @@ var resources = require('./../../resources/model');
 
 var internal, sensor;
 var model = resources.pi.sensors.pir;
-var pluginName = resources.pi.sensors.pir.name;
+var pluginName = resources.pi.sensors.temperature.name;
 var localParams = {'simulate': false, 'frequency' : 2000};
 
 exports.start = function (params) {
@@ -52,5 +52,5 @@ function simulate() {
 }
 
 function showValue() {
-    console.info(model.value ? 'there is someone!' : 'not anymore!');
+    console.info('The temperature is ${model.temperature.value}' and the humidity is ${model.humidity.value}.);
 }
