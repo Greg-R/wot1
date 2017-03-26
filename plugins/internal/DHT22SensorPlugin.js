@@ -2,7 +2,7 @@
 var resources = require('./../../resources/model');
 
 var interval, sensor;
-var model = resources.pi.sensors.temperature;
+var model = resources.pi.sensors;
 var pluginName = resources.pi.sensors.temperature.name;
 var localParams = {'simulate': false, 'frequency' : 2000};
 
