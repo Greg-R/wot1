@@ -21,7 +21,7 @@ exports.stop = function() {
     } else {
         sensor.unexport();
     }
-    console.info('${pluginName} plugin stopped');
+    console.info('%s plugin stopped', pluginName);
 };
 
 function connectHardware() {

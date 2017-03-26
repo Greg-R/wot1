@@ -20,18 +20,18 @@ exports.stop = function() {
     } else {
         sensor.unexport();
     }
-    console.info('${pluginName} plugin stopped');
+    console.info('%s plugin stopped', pluginName);
 };
 
 function connectHardware() {
     var Gpio = require('onoff').Gpio;
     sensor = new Gpio(model.gpio, 'in', 'both');
     sensor.watch(function (err, value) {
-        if (err) exit(err);
+//        if (err) exit(err);
         model.value = !!value;
         showValue();        
     });
-    console.info('Simulated ${pluginName} sensor started.');
+    console.info('Hardware %s sensor started.', pluginName);
 }
 
 function simulate() {
@@ -39,7 +39,7 @@ function simulate() {
                            model.value = !model.value;
                            showValue();
     }, localParams.frequency);
-    console.info('Simulated ${pluginName} sensor started');  
+    console.info('Simulated %s sensor started', pluginName);  
 }
 
 function showValue() {
