@@ -41,6 +41,12 @@ function connectHardware() {
             }, localParams.frequency);
             }
         };
+    if (sensor.initialize()) {
+        console.info('Hardware %s sensor started!', pluginName);
+        sensor.read();
+    } else {
+        console.warn("Failed to initialize Temp sensor!");
+    }
     }
 
 function simulate() {
@@ -52,5 +58,5 @@ function simulate() {
 }
 
 function showValue() {
-    console.info('The temperature is ${model.temperature.value} and the humidity is ${model.humidity.value}.');
+    console.info('The temperature is %s and the humidity is %s.', model.temperature.value, model.humidity.value);
 }

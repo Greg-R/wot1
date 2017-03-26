@@ -5,7 +5,7 @@
 	"port": 8484,
 	"sensors": {
 		"temperature" : {
-			"name":"Temperature Sensor",
+			"name": "Temperature Sensor",
 			"description": "An ambient temperature sensor.",
 			"unit": "celsius",
 			"value": 0,
