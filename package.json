@@ -1,28 +1,32 @@
 {
-  "name": "wot1",
-  "version": "1.0.0",
-  "description": "Experiments with Web Front-end using Node",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Greg-R/wot1.git"
-  },
-  "author": "Greg-R",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Greg-R/wot1/issues"
-  },
-  "homepage": "https://github.com/Greg-R/wot1#readme",
-  "dependencies": {
-    "cors": "^2.8.1",
-    "express": "^4.15.2",
-    "jshint": "^2.9.4",
-    "ws": "^2.2.1"
-  },
-  "jshintConfig": {
-    "node": true
-  }
+    "name": "wot1",
+    "version": "1.0.0",
+    "description": "Experiments with Web Front-end using Node",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Greg-R/wot1.git"
+    },
+    "author": "Greg-R",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Greg-R/wot1/issues"
+    },
+    "homepage": "https://github.com/Greg-R/wot1#readme",
+    "dependencies": {
+        "cors": "^2.8.1",
+        "express": "^4.15.2",
+        "jshint": "^2.9.4",
+        "ws": "^2.2.1"
+    },
+    "jshintConfig": {
+        "node": true
+    },
+    "optionalDependencies": {
+        "on-off": "^1.0.4",
+        "node-dht-sensor": "^0.0.8"
+    }
 }
