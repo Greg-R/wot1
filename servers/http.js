@@ -12,7 +12,7 @@ app.use('/pi/actuators', actuatorsRoutes);
 app.use('/pi/sensors', sensorRoutes);
 
 app.get('/pi', function (req, res) {
-	res.send('This is the Wot-Pi!')
+	res.send('This is the Wot-Pi!');
 });
 
 module.exports = app;

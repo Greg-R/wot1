@@ -17,6 +17,12 @@
   },
   "homepage": "https://github.com/Greg-R/wot1#readme",
   "dependencies": {
-    "express": "^4.15.2"
+    "cors": "^2.8.1",
+    "express": "^4.15.2",
+    "jshint": "^2.9.4",
+    "ws": "^2.2.1"
+  },
+  "jshintConfig": {
+    "node": true
   }
 }
