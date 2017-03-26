@@ -1,7 +1,7 @@
 
 var resources = require('./../../resources/model');
 
-var internal, sensor;
+var interval, sensor;
 var model = resources.pi.sensors.pir;
 var pluginName = resources.pi.sensors.temperature.name;
 var localParams = {'simulate': false, 'frequency' : 2000};
@@ -25,7 +25,7 @@ exports.stop = function() {
 };
 
 function connectHardware() {
-    var Gpio = require('node-dht-sensor');
+    var sensorDriver = require('node-dht-sensor');
     var sensor = {
         initialize: function () {
             return sensorDriver.initialize(22, model.temperature.gpio);
@@ -52,5 +52,5 @@ function simulate() {
 }
 
 function showValue() {
-    console.info('The temperature is ${model.temperature.value}' and the humidity is ${model.humidity.value}.);
+    console.info('The temperature is ${model.temperature.value} and the humidity is ${model.humidity.value}.');
 }
