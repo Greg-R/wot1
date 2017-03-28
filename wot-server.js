@@ -1,6 +1,6 @@
 var httpServer = require('./servers/http');
 var resources = require('./resources/model');
-
+//test
 //var ledsPlugin = require('./plugins/ledsPlugin');
 var pirPlugin  = require('./plugins/internal/pirPlugin');
 var dhtPlugin = require('./plugins/internal/DHT22SensorPlugin');
