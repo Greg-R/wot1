@@ -34,6 +34,7 @@ module.exports = function () {
             res.send(req.result);
             return;
         } else {
+            console.info('Executing the else in the converter.');
             next();
         }
     };
