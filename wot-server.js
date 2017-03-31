@@ -1,5 +1,7 @@
 var httpServer = require('./servers/http');
-var resources = require('./resources/model');
+var wsServer =   require('./servers/websockets');
+var resources =  require('./resources/model');
+
 //test
 //var ledsPlugin = require('./plugins/ledsPlugin');
 var pirPlugin  = require('./plugins/internal/pirPlugin');
