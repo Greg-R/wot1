@@ -21,28 +21,32 @@ exports.listen = function (server) {
         wss.onopen = (open) => {
             console.info('The onopen event was fired, the websocket opened.');
         };
-    
+
         wss.onmessage = () => {
             console.log('Server received message.');
         };
 
-        wss.on('connection', function (ws) {
+        wss.on('message', () => {
+                console.log('Server received message.');
+            });
+
+            wss.on('connection', function (ws) {
                 var url = ws.upgradeReq.url;
                 console.info(url);
                 setTimeout(
                     ws.send(new Date().toTimeString(), 1000));
-                    try {
-                        //  Object.observe is depracated.  Using Proxy instead.
-                        /*            Object.observe(selectResource(url), function (changes){
-                                        ws.send(JSON.stringify(changes[0].object), function () {
-                                        });                   
-                                        });*/
-                    } catch (e) {
-                        console.log('Unable to observe %s resource!', url);
-                    }
-                    // onopen creates an event listener which fires when the websocket opens a connection.
+                try {
+                    //  Object.observe is depracated.  Using Proxy instead.
+                    /*            Object.observe(selectResource(url), function (changes){
+                                    ws.send(JSON.stringify(changes[0].object), function () {
+                                    });                   
+                                    });*/
+                } catch (e) {
+                    console.log('Unable to observe %s resource!', url);
+                }
+                // onopen creates an event listener which fires when the websocket opens a connection.
 
-                });
+            });
         };
 
         function selectResource(url) {
