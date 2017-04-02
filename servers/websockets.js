@@ -7,6 +7,11 @@ exports.listen = function (server) {
     });
     console.info('WebSocket server started...');
 
+    setTimeout(
+        wss.send('{"temperature": 100}', () => {
+            console.log("Fired data from server WebSocket.");         
+        }), 1000);
+
     wss.onopen = (open) => {
         console.info('The onopen event was fired, the websocket opened.');
     };
@@ -15,7 +20,7 @@ exports.listen = function (server) {
         var url = ws.upgradeReq.url;
         console.info(url);
         setTimeout(
-        ws.send('{"temperature": 100}'), 1000);
+            ws.send('{"temperature": 100}'), 1000);
         try {
             //  Object.observe is depracated.  Using Proxy instead.
             /*            Object.observe(selectResource(url), function (changes){
