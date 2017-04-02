@@ -10,7 +10,7 @@ exports.listen = function (server) {
         // Broadcast to all.
         wss.broadcast = function broadcast(data) {
             wss.clients.forEach(function each(client) {
-                if (client.readyState === WebSocket.OPEN) {
+                if (client.readyState === wss.OPEN) {
                     client.send(new Date().toTimeString());
                 }
             });
@@ -26,7 +26,7 @@ exports.listen = function (server) {
                 var url = ws.upgradeReq.url;
                 console.info(url);
                 setTimeout(
-                    ws.send(new Date().toTimeString(), 1000);
+                    ws.send(new Date().toTimeString(), 1000));
                     try {
                         //  Object.observe is depracated.  Using Proxy instead.
                         /*            Object.observe(selectResource(url), function (changes){
