@@ -31,10 +31,10 @@ wss.on('listening', function () {
 
 wss.on('connection', function (ws) {
     var url = ws.upgradeReq.url;
-    console.info('The upgrade url is ${url}.');
+    console.info('The upgrade url is %s', url);
     console.info('The websocket url is %s', ws.url);
-    ws.on('open', function () {
-        console.log('A Websocket connnection is opened.');
+    ws.on('message', function () {
+        console.log('A Websocket message is received.');
     });
     setTimeout(
         ws.send(new Date().toTimeString(), 1000));
