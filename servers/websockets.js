@@ -8,7 +8,7 @@ exports.listen = function (server) {
     console.info('WebSocket server started...');
 
     // Broadcast to all.
-    wss.broadcast = function broadcast(data) {
+ /*   wss.broadcast = function broadcast(data) {
         wss.clients.forEach(function each(client) {
             if (client.readyState === wss.OPEN) {
                 client.send(new Date().toTimeString());
@@ -24,25 +24,17 @@ exports.listen = function (server) {
 
     WebSocketServer.onmessage = () => {
         console.log('Server received message.');
-    };
+    };*/
 
     wss.on('connection', function (ws) {
         var url = ws.upgradeReq.url;
-        console.info(url);
+        console.info('The upgrade url is $(url).');
         ws.on('open', () => {
             console.log('A Websocket connnection is opened.');
         });
         setTimeout(
             ws.send(new Date().toTimeString(), 1000));
-        try {
-            //  Object.observe is depracated.  Using Proxy instead.
-            /*            Object.observe(selectResource(url), function (changes){
-                            ws.send(JSON.stringify(changes[0].object), function () {
-                            });                   
-                            });*/
-        } catch (e) {
-            console.log('Unable to observe %s resource!', url);
-        }
+
         // onopen creates an event listener which fires when the websocket opens a connection.
 
     });
