@@ -36,9 +36,14 @@ wss.on('connection', function (ws) {
     ws.on('message', function (message) {
         console.log('A Websocket message is received: %s', message);
     });
-    setTimeout(
-        ws.send(new Date().toTimeString(), 1000));
-
-    // onopen creates an event listener which fires when the websocket opens a connection.
-
+    //  Now figure out how to use a Proxy to detect change and send a message.
+    var resourceProxy = new Proxy(resources, handler(resources, resources.pi.sensors.temperature.value ));
 });
+
+function handler (trapTarget, key, value, receiver) {
+    console.log('Temperature value changed');
+    return true;
+    
+}
+
+
