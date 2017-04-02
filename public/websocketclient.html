@@ -8,7 +8,7 @@
 
 <script type="text/javascript">
     function subscribeToSensor(sensor) {
-        var socket = new WebSocket('ws://192.168.1.3:8484/pi/sensors/' + sensor); //#A
+        var socket = new WebSocket('ws://192.168.1.10:8484/pi/sensors/' + sensor); //#A
         socket.onmessage = function (event) { //#B
             var result = JSON.parse(event.data);
             console.log(result.value)

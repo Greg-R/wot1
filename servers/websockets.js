@@ -17,9 +17,10 @@ exports.listen = function(server) {
            catch (e) {
         console.log('Unable to observe %s resource!', url);
     }
-        wss.onopen(function(open) {
+        // onopen creates an event listener which fires when the websocket opens a connection.
+        wss.onopen = (open) => {
             console.info('The onopen event was fired, the websocket opened.');          
-        });
+        };
     });
     };
 
