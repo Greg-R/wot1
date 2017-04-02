@@ -33,8 +33,8 @@ wss.on('connection', function (ws) {
     var url = ws.upgradeReq.url;
     console.info('The upgrade url is %s', url);
     console.info('The websocket url is %s', ws.url);
-    ws.on('message', function () {
-        console.log('A Websocket message is received.');
+    ws.on('message', function (message) {
+        console.log('A Websocket message is received: %s', message);
     });
     setTimeout(
         ws.send(new Date().toTimeString(), 1000));
