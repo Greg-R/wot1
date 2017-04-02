@@ -14,7 +14,7 @@ exports.listen = function (server) {
     wss.on('connection', function (ws) {
         var url = ws.upgradeReq.url;
         console.info(url);
-        ws.send({"temperature": 100});
+        ws.send('{"temperature": 100}');
         try {
             //  Object.observe is depracated.  Using Proxy instead.
             /*            Object.observe(selectResource(url), function (changes){
