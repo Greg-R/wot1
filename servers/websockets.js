@@ -8,7 +8,7 @@ exports.listen = function (server) {
     console.info('WebSocket server started...');
 
     setTimeout(
-        wss.send('{"temperature": 100}', () => {
+        wss.server.send('{"temperature": 100}', () => {
             console.log("Fired data from server WebSocket.");         
         }), 1000);
 
