@@ -21,6 +21,10 @@ exports.listen = function (server) {
         wss.onopen = (open) => {
             console.info('The onopen event was fired, the websocket opened.');
         };
+    
+        wss.onmessage = () => {
+            console.log('Server received message.');
+        };
 
         wss.on('connection', function (ws) {
                 var url = ws.upgradeReq.url;
