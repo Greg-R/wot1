@@ -8,10 +8,11 @@ exports.listen = function(server) {
         var url = ws.upgradeReq.url;
         console.info(url);
         try {
-            Object.observe(selectResource(url), function (changes){
+            //  Object.observe is depracated.  Using Proxy instead.
+/*            Object.observe(selectResource(url), function (changes){
                 ws.send(JSON.stringify(changes[0].object), function () {
                 });                   
-                });
+                });*/
             }
            catch (e) {
         console.log('Unable to observe %s resource!', url);
