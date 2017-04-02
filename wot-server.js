@@ -25,6 +25,10 @@ var wss = new WebSocketServer({
     server: server
 });
 
+wss.on('listening', function () {
+    console.log('WebSocketServer listening event fired.');
+});
+
 wss.on('connection', function (ws) {
     var url = ws.upgradeReq.url;
     console.info('The upgrade url is ${url}.');
@@ -37,4 +41,3 @@ wss.on('connection', function (ws) {
     // onopen creates an event listener which fires when the websocket opens a connection.
 
 });
-
