@@ -29,6 +29,9 @@ exports.listen = function (server) {
     wss.on('connection', function (ws) {
         var url = ws.upgradeReq.url;
         console.info(url);
+        ws.on('open', () => {
+            console.log('A Websocket connnection is opened.');
+        });
         setTimeout(
             ws.send(new Date().toTimeString(), 1000));
         try {
