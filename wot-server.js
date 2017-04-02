@@ -1,19 +1,40 @@
 var httpServer = require('./servers/http');
-var wsServer =   require('./servers/websockets');
-var resources =  require('./resources/model');
+//var wsServer =   require('./servers/websockets');
+var WebSocketServer = require('ws').Server;
+var resources = require('./resources/model');
 
 //test
 //var ledsPlugin = require('./plugins/ledsPlugin');
-var pirPlugin  = require('./plugins/internal/pirPlugin');
+var pirPlugin = require('./plugins/internal/pirPlugin');
 var dhtPlugin = require('./plugins/internal/DHT22SensorPlugin');
 
-pirPlugin.start({'simulate': false, 'frequency': 2000});
-dhtPlugin.start({'simulate': false, 'frequency': 10000});
-
-var server = httpServer.listen(resources.pi.port, function() {
-	console.info('Your WoT Pi is up and running on port %s', resources.pi.port);
+pirPlugin.start({
+    'simulate': false,
+    'frequency': 2000
 });
-                               
-    wsServer.listen(server);
- 
+dhtPlugin.start({
+    'simulate': false,
+    'frequency': 10000
+});
+
+var server = httpServer.listen(resources.pi.port, function () {
+    console.info('Your WoT Pi is up and running on port %s', resources.pi.port);
+});
+
+var wss = new WebSocketServer({
+    server: server
+});
+
+wss.on('connection', function (ws) {
+    var url = ws.upgradeReq.url;
+    console.info('The upgrade url is ${url}.');
+    ws.on('open', function () {
+        console.log('A Websocket connnection is opened.');
+    });
+    setTimeout(
+        ws.send(new Date().toTimeString(), 1000));
+
+    // onopen creates an event listener which fires when the websocket opens a connection.
+
+});
 
