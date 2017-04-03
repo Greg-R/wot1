@@ -37,7 +37,7 @@ wss.on('connection', function (ws) {
         console.log('A Websocket message is received: %s', message);
     });
     //  Now figure out how to use a Proxy to detect change and send a message.
-    var resourceProxy = new Proxy(resources, {get: handler(resources, resources.pi.sensors.temperature.value )});
+    var resourceProxy = new Proxy(resources, {set: handler(resources, resources.pi.sensors.temperature.value )});
 });
 
 function handler (trapTarget, key, value, receiver) {
