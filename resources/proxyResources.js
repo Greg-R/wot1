@@ -11,7 +11,7 @@ let sensorEmitter = new events.EventEmitter();
 let validator = {
     get: function (target, key) {
         if (typeof target[key] === 'object' && target[key] !== null) {
-            return new Proxy(target[key], exports.validator);
+            return new Proxy(target[key], validator);
         } else {
             return target[key];
         }
