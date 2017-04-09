@@ -4,29 +4,8 @@ var httpServer = require('./servers/http');
 //var wsServer =   require('./servers/websockets');
 var WebSocketServer = require('ws').Server;
 var resources = require('./resources/model');
-var events = require('events');
-
-var emitter = new events.EventEmitter();
-
-var validator = {
-    get: function (target, key) {
-        if (typeof target[key] === 'object' && target[key] !== null) {
-            return new Proxy(target[key], validator);
-        } else {
-            return target[key];
-        }
-    },
-    set: function (target, key, value) {
-        console.log(target);
-        console.log(key);
-        console.log(value);
-        target[key] = value;
-        emitter.emit('tempChange');
-        return true;
-    }
-};
-
-let resourcesProxy = new Proxy(resources, validator);
+var emitter = require('./resources/proxyResources').emitter;
+var proxyresource = require('./resources/proxyResources').resourceProxy;
 
 //test
 //var ledsPlugin = require('./plugins/ledsPlugin');
@@ -64,20 +43,8 @@ wss.on('connection', function (ws) {
         console.log('A Websocket message is received: %s', message);
     });
     //  Now figure out how to use a Proxy to detect change and send a message.
-
-    let proxyResources = new Proxy(resources.pi.sensors.temperature, {
-        set: function (target, property, value, receiver) {
-            console.log('This is the proxyResources speaking.  A value has been set.');
-            console.log(`The property being changed is ${property}`);
-            console.log(`The value being set is ${value}`);
-            target[property] = value;
-            return true;
-        }
-    });
-//  Send the temperature using an Event emitted by a temperature change (via Proxy);
-    emitter.on('tempChange', function (ws) { 
+    //  Send the temperature using an Event emitted by a temperature change (via Proxy);
+    emitter.on('tempChange', function (ws) {
         ws.send(`Temperature update: ${resources.pi.sensors.temperature.value}`);
     });
 });
-
-
