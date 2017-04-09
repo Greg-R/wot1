@@ -47,4 +47,7 @@ wss.on('connection', function (ws) {
     emitter.on('tempChange', function () {
         ws.send(`Temperature update: ${resources.pi.sensors.temperature.value}`);
     });
+       emitter.on('humidityChange', function () {
+        ws.send(`Humidity update: ${resources.pi.sensors.humidity.value}`);
+    });
 });

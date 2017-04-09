@@ -21,7 +21,10 @@ let validator = {
         console.log(key);
         console.log(value);
         target[key] = value;
-        sensorEmitter.emit('tempChange');
+        if (key === 'temperature')
+            sensorEmitter.emit('tempChange');
+                if (key === 'humidity')
+            sensorEmitter.emit('humidityChange');
         return true;
     }
 };
