@@ -75,7 +75,9 @@ wss.on('connection', function (ws) {
         }
     });
 //  Send the temperature using an Event emitted by a temperature change (via Proxy);
-    emitter.on('tempChange', ws.send(`Temperature update: ${resources.pi.sensors.temperature.value}`));
+    emitter.on('tempChange', function (ws) { 
+        ws.send(`Temperature update: ${resources.pi.sensors.temperature.value}`);
+    });
 });
 
 
