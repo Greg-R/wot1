@@ -39,25 +39,16 @@ wss.on('connection', function (ws) {
         console.log('A Websocket message is received: %s', message);
     });
     //  Now figure out how to use a Proxy to detect change and send a message.
-    var resourceProxy = new Proxy(resources, {set: handler(resources, resources.pi.sensors.temperature.value )});
-    
+   
     let proxyResources = new Proxy(resources.pi.sensors.temperature, {
-    set: function(target, property, value, receiver) {
-        console.log('This is the proxyResources speaking.  A value has been set.');
-        console.log(`The property being changed is ${property}`);
-        console.log(`The value being set is ${value}`);
-        target[property] = value;
-        return true;
-    }    
-});
-    
+        set: function (target, property, value, receiver) {
+            console.log('This is the proxyResources speaking.  A value has been set.');
+            console.log(`The property being changed is ${property}`);
+            console.log(`The value being set is ${value}`);
+            target[property] = value;
+            return true;
+        }
+    });
+
     ws.send('Message from PI server');
 });
-
-function handler (trapTarget, key, value, receiver) {
-    console.log('Temperature value changed');
-    return true;
-    
-}
-
-
