@@ -24,9 +24,11 @@
 
             var socket = new WebSocket('ws://192.168.1.10:8484/pi/sensors/' + 'temperature'); //#A
             socket.onmessage = function(event) { //#B
-                //      var result = JSON.parse(event.data);
+                var result = JSON.parse(event.data);
+                if (result.name === "Temperature Sensor"){
                 console.log(event.data)
                 document.getElementById("temperature").textContent = event.data;
+            }
             };
             socket.onerror = function(error) { //#C
                 console.log('An error occured while trying to connected to a Websocket!');
