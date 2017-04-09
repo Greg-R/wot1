@@ -3,6 +3,8 @@ var resources = require('./../../resources/model');
 var moduleProxy = require('./../../resources/proxyResources');
 
 var interval, sensor;
+
+//  Use the proxy so that changes will be intercepted and events fired!
 var model = moduleProxy.resourceProxy.pi.sensors;
 var pluginName = resources.pi.sensors.temperature.name;
 var localParams = {'simulate': false, 'frequency' : 2000};

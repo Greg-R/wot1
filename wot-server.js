@@ -18,7 +18,7 @@ pirPlugin.start({
 });
 dhtPlugin.start({
     'simulate': false,
-    'frequency': 10000
+    'frequency': 1000
 });
 
 var server = httpServer.listen(resources.pi.port, function () {

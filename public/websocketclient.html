@@ -27,11 +27,11 @@
                 var result = JSON.parse(event.data);
                 if (result.name === "Temperature Sensor"){
                 console.log(event.data)
-                document.getElementById("temperature").textContent = result.value;
+                document.getElementById("temperature").textContent = 'The current temperature is ' + result.value + ' degrees Celsius';
             }               
                 if (result.name === "Humidity sensor"){
                 console.log(event.data)
-                document.getElementById("humidity").textContent = result.value;
+                document.getElementById("humidity").textContent = 'The current humidity is ' + result.value + '%';
             }
                 
             };
