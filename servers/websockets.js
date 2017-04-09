@@ -28,7 +28,7 @@ exports.listen = function (server) {
 
     wss.on('connection', function (ws) {
         var url = ws.upgradeReq.url;
-        console.info('The upgrade url is $(url).');
+        console.info('The upgrade url is ${url}.');
         ws.on('open', () => {
             console.log('A Websocket connnection is opened.');
         });
