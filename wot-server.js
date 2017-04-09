@@ -49,6 +49,6 @@ wss.on('connection', function (ws) {
               ws.send(JSON.stringify(resources.pi.sensors.temperature));
     });
     emitter.on('humidityChange', function () {
-        ws.send(`Humidity update: ${resources.pi.sensors.humidity}`);
+        ws.send(JSON.stringify(resources.pi.sensors.humidity));
     });
 });
