@@ -32,6 +32,8 @@ wss.on('listening', function () {
 });
 
 wss.on('connection', function (ws) {
+    console.info('Successfully connected to WebSocket.');
+    console.info(`The initial temperature value is ${resources.pi.sensors.temperature.value}`);
     var url = ws.upgradeReq.url;
     console.info('The upgrade url is %s', url);
     console.info('The websocket url is %s', ws.url);
