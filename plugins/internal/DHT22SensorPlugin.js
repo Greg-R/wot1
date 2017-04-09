@@ -1,8 +1,9 @@
 
 var resources = require('./../../resources/model');
+var moduleProxy = require('./../../resources/proxyResources');
 
 var interval, sensor;
-var model = resources.pi.sensors;
+var model = moduleProxy.resourceProxy.pi.sensors;
 var pluginName = resources.pi.sensors.temperature.name;
 var localParams = {'simulate': false, 'frequency' : 2000};
 
