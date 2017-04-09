@@ -4,6 +4,29 @@ var httpServer = require('./servers/http');
 //var wsServer =   require('./servers/websockets');
 var WebSocketServer = require('ws').Server;
 var resources = require('./resources/model');
+var events = require('events');
+
+var emitter = new events.EventEmitter();
+
+var validator = {
+    get: function (target, key) {
+        if (typeof target[key] === 'object' && target[key] !== null) {
+            return new Proxy(target[key], validator);
+        } else {
+            return target[key];
+        }
+    },
+    set: function (target, key, value) {
+        console.log(target);
+        console.log(key);
+        console.log(value);
+        target[key] = value;
+        emitter.emit('tempChange');
+        return true;
+    }
+};
+
+let resourcesProxy = new Proxy(resources, validator);
 
 //test
 //var ledsPlugin = require('./plugins/ledsPlugin');
@@ -51,16 +74,8 @@ wss.on('connection', function (ws) {
             return true;
         }
     });
-
-    ws.send('Message from PI server');
+//  Send the temperature using an Event emitted by a temperature change (via Proxy);
+    emitter.on('tempChange', ws.send(`Temperature update: ${resources.pi.sensor.temperature.value}`));
 });
 
-let proxyResources = new Proxy(resources.pi.sensors.temperature, {
-    set: function (target, property, value, receiver) {
-        console.log('This is the proxyResources speaking.  A value has been set.');
-        console.log(`The property being changed is ${property}`);
-        console.log(`The value being set is ${value}`);
-        target[property] = value;
-        return true;
-    }
-});
+

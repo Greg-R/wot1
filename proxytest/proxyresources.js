@@ -22,8 +22,18 @@ console.log(`The value of temperature now is ${resources.pi.sensors.temperature.
 
 //  Now create a proxy for resources and see if it will detect changes in temperature.
 
-let proxyResources = new Proxy(resources.pi.sensors.temperature, {
+/*let proxyResources = new Proxy(resources.pi.sensors.temperature, {
     set: function(target, property, value, receiver) {
+        console.log('This is the proxyResources speaking.  A value has been set.');
+        console.log(`The property being changed is ${property}`);
+        console.log(`The value being set is ${value}`);
+        target[property] = value;
+        return true;
+    }    
+});*/
+
+let proxyResources = new Proxy(resources, {
+    set: function('resources.pi.sensors.temperature', property, value, receiver) {
         console.log('This is the proxyResources speaking.  A value has been set.');
         console.log(`The property being changed is ${property}`);
         console.log(`The value being set is ${value}`);
