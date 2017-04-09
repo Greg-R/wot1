@@ -44,7 +44,7 @@ wss.on('connection', function (ws) {
     });
     //  Now figure out how to use a Proxy to detect change and send a message.
     //  Send the temperature using an Event emitted by a temperature change (via Proxy);
-    emitter.on('tempChange', function (ws) {
+    emitter.on('tempChange', function () {
         ws.send(`Temperature update: ${resources.pi.sensors.temperature.value}`);
     });
 });
