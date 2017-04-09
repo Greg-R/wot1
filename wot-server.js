@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 var httpServer = require('./servers/http');
 //var wsServer =   require('./servers/websockets');
 var WebSocketServer = require('ws').Server;
@@ -38,6 +40,8 @@ wss.on('connection', function (ws) {
     });
     //  Now figure out how to use a Proxy to detect change and send a message.
     var resourceProxy = new Proxy(resources, {set: handler(resources, resources.pi.sensors.temperature.value )});
+    
+    ws.send('Message from PI server');
 });
 
 function handler (trapTarget, key, value, receiver) {
